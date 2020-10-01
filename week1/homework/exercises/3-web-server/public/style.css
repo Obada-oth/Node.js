@@ -7,4 +7,10 @@ h1 {
 }
 #content {
   color: white;
+  display: flex;
+  justify-content: center;
+}
+.img {
+  width: 300px;
+  margin: auto;
 }
