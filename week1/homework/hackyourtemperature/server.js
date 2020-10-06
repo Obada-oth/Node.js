@@ -10,12 +10,11 @@ app.engine("handlebars", exphbs({ defaultLayout: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("index"));
+app.get("/", (req, res) => res.render("home"));
 
 app.post("/weather", (req, res) => {
   const cityName = req.body.cityName;
-  console.log(cityName);
-  res.render("index", {
+  res.render("home", {
     cityName,
   });
 });

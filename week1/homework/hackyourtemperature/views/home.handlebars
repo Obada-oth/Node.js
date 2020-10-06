@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<div class="container mt-5 " >
+<form class="form-inline mx-auto" action="/weather" method="POST"  style="width: 60%">
+  
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="cityName" >Type a city name: </label>
+    <input type="text" name="cityName" class="form-control ml-4" id="cityName" placeholder="City">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Get temperatures</button>
+  
+</form>
+ <h3 class=" text-center mx-auto" style="width: 60%">{{cityName}}</h3>
+</div>
+
+ 
+    
