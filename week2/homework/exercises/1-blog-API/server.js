@@ -11,12 +11,16 @@ app.get("/", function (req, res) {
 });
 
 app.post("/blogs", (req, res) => {
-  title = req.body.title;
-  content = req.body.content;
-  fs.writeFileSync(title, content);
-  data.push(req.body);
+  try {
+    title = req.body.title;
+    content = req.body.content;
+    fs.writeFileSync(title, content);
+    data.push(req.body);
 
-  res.end("ok");
+    res.end("ok");
+  } catch (err) {
+    handleServerError(res);
+  }
 });
 
 app.get("/blogs/:title", (req, res) => {
@@ -26,10 +30,9 @@ app.get("/blogs/:title", (req, res) => {
   if (fs.existsSync(title)) {
     const post = fs.readFileSync(title);
 
-    res.end(post);
+    res.send(post);
   } else {
-    res.status(404);
-    res.send("post is not found");
+    handleNotFoundError(res);
   }
 });
 
@@ -41,7 +44,7 @@ app.put("/posts/:title", (req, res) => {
     fs.writeFileSync(title, content);
     res.end("ok");
   } else {
-    res.send("title not found");
+    handleNotFoundError(res);
   }
 });
 
@@ -55,13 +58,27 @@ app.delete("/blogs/:title", (req, res) => {
 
     res.end("ok");
   } else {
-    res.send("title not found");
+    handleNotFoundError(res);
   }
 });
 
 app.get("/blogs", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.send(data);
+  try {
+    res.setHeader("Content-Type", "application/json");
+    res.send(data);
+  } catch (err) {
+    handleServerError(res);
+  }
 });
+
+function handleNotFoundError(res) {
+  res.status(404);
+  res.send("title not found");
+}
+
+function handleServerError(res) {
+  res.status(500);
+  res.send("server error");
+}
 
 app.listen(3000);
