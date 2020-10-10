@@ -31,6 +31,7 @@ app.get("/", async (req, res) => {
     console.log(joke);
   } catch (err) {
     console.error("fetch failed", err);
+    res.status(500);
   }
 });
 

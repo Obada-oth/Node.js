@@ -28,6 +28,7 @@ app.get("/", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.send({ msg: "Something went wrong!" });
+    res.status(500);
   }
 });
 const port = process.env.PORT || 3000;

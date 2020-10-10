@@ -33,6 +33,7 @@ app.post("/reservations", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.send("Oops!");
+    res.send(500);
   }
 });
 const port = process.env.PORT || 3000;
