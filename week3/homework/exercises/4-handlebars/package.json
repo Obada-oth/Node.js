@@ -1,5 +1,5 @@
 {
-  "name": "1-joke-api",
+  "name": "4-handlebars",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
+    "handlebars": "^4.7.6"
   }
 }
