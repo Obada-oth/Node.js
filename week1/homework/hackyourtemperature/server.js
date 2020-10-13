@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => res.render("home"));
 
 app.post("/weather", (req, res) => {
-  const cityName = req.body.cityName;
+  const cityName = req.body.cityName.toUpperCase();
 
   axios(
     `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=${API_KEY}`
@@ -23,8 +23,20 @@ app.post("/weather", (req, res) => {
     .then((response) => {
       const data = response.data;
       const temp = data.main.temp;
+      const feelsLike = data.main.feels_like;
+      const weatherCondition = data.weather[0].main;
+      const description = data.weather[0].description;
+      const icon = data.weather[0].icon;
+      const windSpeed = data.wind.speed;
+
       res.render("home", {
-        weatherText: `Current temperature in ${data.name} is ${temp}`,
+        icon,
+        cityName,
+        temp,
+        weatherCondition,
+        description,
+        feelsLike,
+        windSpeed,
       });
     })
 

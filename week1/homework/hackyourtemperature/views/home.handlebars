@@ -1,15 +1,59 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<div class="container mt-5 " >
-<form class="form-inline mx-auto" action="/weather" method="POST"  style="width: 60%">
-  
-  <div class="form-group mx-sm-3 mb-2">
-    <label for="cityName" >Type a city name: </label>
-    <input type="text" name="cityName" class="form-control ml-4" id="cityName" placeholder="City">
+<div class="card">
+    <div class="card-header">
+           <h1 class="text-center">Hack Your Weather</h1>
+    </div>
+    <div class="card-body">
+       <h5 class="card-title text-center">Get current weather data by city</h5>
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Get temperatures</button>
-  
-</form>
- <p class=" text-center mx-auto" style="width: 60%">{{weatherText}}</p>
+
+       
+</div>
+
+<div class="container mt-5 " >
+  <form class="form-inline mx-auto" action="/weather" method="POST"  style="width: 60%">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="cityName" >Type a city name: </label>
+      <input type="text" name="cityName" class="form-control ml-4" id="cityName" placeholder="City">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get temperatures</button>
+  </form>
+</div>
+<p class="text-center">{{weatherText}}</p>
+<div class="container mb-5" style="width: 60%;">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="border-0" scope="col" width="30%" style="text-align: left">{{cityName}} <img src="http://openweathermap.org/img/wn/{{icon}}.png" alt=""> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td >Weather Conditions</td>
+      <td style="text-align: center">{{weatherCondition}}</td>
+    </tr>
+     <tr>
+      <td >Weather Description</td>
+      <td style="text-align: center">{{description}}</td>
+    </tr>
+    <tr >
+      <td >Temperature</td>
+      <td style="text-align: center">{{temp}}&#8451;</td>  
+    </tr>
+    <tr width="75%">
+      <td  >Feels like</td>
+      <td style="text-align: center">{{feelsLike}}&#8451;</td>   
+    </tr>
+    <tr width="75%">
+      <td  >Wind speed</td>
+      <td style="text-align: center">{{windSpeed}} km/hour</td>   
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="card-footer text-muted text-center mt-5 p-3">
+           All Rights Reserved HYF 2020
 </div>
 
  
