@@ -14,13 +14,14 @@
 const express = require("express");
 const app = express();
 const fetch = require("node-fetch");
-const credentials = "Basic YWRtaW46aHZnWDhLbFZFYQ";
+const buf = Buffer.from("admin:hvgX8KlVEa", "utf8");
+const credentials = buf.toString("base64");
 const url = `https://restapiabasicauthe-sandbox.mxapps.io/api/books`;
 
 app.get("/", async (req, res) => {
   try {
     const response = await fetch(url, {
-      headers: { Authorization: credentials },
+      headers: { Authorization: `Basic ${credentials}` },
     });
     const data = await response.json();
     console.log(data);
