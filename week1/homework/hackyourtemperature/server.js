@@ -28,16 +28,27 @@ app.post("/weather", (req, res) => {
       const description = data.weather[0].description;
       const icon = data.weather[0].icon;
       const windSpeed = data.wind.speed;
-
-      res.render("home", {
-        icon,
-        cityName,
-        temp,
-        weatherCondition,
-        description,
-        feelsLike,
-        windSpeed,
-      });
+      console.log(typeof windSpeed);
+      if (
+        typeof temp !== "number" ||
+        typeof feelsLike !== "number" ||
+        typeof weatherCondition !== "string" ||
+        typeof description !== "string" ||
+        typeof icon !== "string" ||
+        typeof windSpeed !== "number"
+      ) {
+        res.status(500);
+        res.send("Server Error!");
+      } else
+        res.render("home", {
+          icon,
+          temp,
+          weatherCondition,
+          description,
+          feelsLike,
+          windSpeed,
+          cityName,
+        });
     })
 
     .catch((err) => {
@@ -49,7 +60,7 @@ app.post("/weather", (req, res) => {
       } else if (err.response.data.cod === "400") {
         console.log(err);
         res.render("home", {
-          weatherText: `Bad request : ${err.response.data.message}, please type a city name.`,
+          weatherText: `Bad request: please type a city name.`,
         });
       } else {
         console.log(err);
